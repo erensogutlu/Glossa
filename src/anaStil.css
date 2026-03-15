@@ -1,0 +1,242 @@
+@import "tailwindcss";
+
+/* genel font ayari ve temel stiller */
+body {
+	font-family: "Nunito", sans-serif;
+	background-color: #111827;
+	/* gray-900 */
+	color: white;
+	-webkit-tap-highlight-color: transparent;
+}
+
+/* 3 boyutlu buton efekti (duolingo tarzi) */
+.btn-3d {
+	transition: all 0.1s;
+}
+
+.btn-3d:active:not(:disabled) {
+	transform: translateY(4px);
+	border-bottom-width: 0px !important;
+	margin-top: 4px;
+}
+
+/* touch target minimums */
+button, 
+.ders-dugumu,
+.kurs-tab {
+	min-height: 44px;
+	min-width: 44px;
+}
+
+/* yol uzerindeki ders yuvarlaklari */
+.ders-dugumu {
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.75rem;
+	cursor: pointer;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+	position: relative;
+}
+
+@media (max-width: 640px) {
+	.ders-dugumu {
+		width: 64px;
+		height: 64px;
+		font-size: 1.5rem;
+	}
+}
+
+/* tiklanamaz dersler icin */
+.ders-kilitli {
+	background-color: #374151;
+	border-bottom: 6px solid #1f2937;
+	color: #6b7280;
+	cursor: not-allowed;
+}
+
+/* tamamlanmis js dersi */
+.ders-js-tamam {
+	background-color: #eab308;
+	border-bottom: 6px solid #ca8a04;
+	color: white;
+}
+
+/* tamamlanmis node dersi */
+.ders-node-tamam {
+	background-color: #22c55e;
+	border-bottom: 6px solid #16a34a;
+	color: white;
+}
+
+/* tamamlanmis react dersi */
+.ders-react-tamam {
+	background-color: #0ea5e9;
+	border-bottom: 6px solid #0284c7;
+	color: white;
+}
+
+/* tamamlanmis sql dersi */
+.ders-sql-tamam {
+	background-color: #a855f7;
+	border-bottom: 6px solid #9333ea;
+	color: white;
+}
+
+/* kurs tablolari */
+.kurs-tab {
+	transition: all 0.3s ease;
+	opacity: 0.5;
+}
+
+.kurs-tab.aktif-tab {
+	opacity: 1;
+	border-bottom-width: 4px;
+	border-color: #3b82f6;
+	color: white;
+}
+
+/* aktif (su anki) ders animasyonu */
+@keyframes nabiz {
+	0% {
+		transform: scale(1);
+		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+	}
+
+	70% {
+		transform: scale(1.05);
+		box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+	}
+
+	100% {
+		transform: scale(1);
+		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+	}
+}
+
+.ders-aktif {
+	animation: nabiz 2s infinite;
+	background-color: #3b82f6;
+	border-bottom: 6px solid #2563eb;
+	color: white;
+}
+
+/* dogru/yanlis cevap pop-up animasyonu */
+@keyframes asagidanGel {
+	from {
+		transform: translateY(100%);
+	}
+
+	to {
+		transform: translateY(0);
+	}
+}
+
+.sonuc-cubugu {
+	animation: asagidanGel 0.3s ease-out forwards;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: #111827;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #374151;
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #4b5563;
+}
+
+/* sayfa gecis animasyonu */
+#sayfa-ogren,
+[class*="max-w-3xl"] {
+	animation: sayfaGiris 0.4s ease-out;
+}
+
+@keyframes sayfaGiris {
+	from {
+		opacity: 0;
+		transform: translateY(12px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* ders dugumu hover efekti */
+.ders-dugumu:not(.ders-kilitli):hover {
+	transform: scale(1.1);
+	filter: brightness(1.15);
+}
+
+.ders-dugumu {
+	transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* bilgi sayfasi kod bloklari */
+pre code {
+	font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", "Consolas", monospace;
+	line-height: 1.6;
+	font-size: 0.875rem;
+	tab-size: 2;
+}
+
+/* bilgi sayfasi bolum kartlari hover */
+.bg-gray-800\/70:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.bg-gray-800\/70 {
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* kurs tab iyilestirmesi */
+.kurs-tab.aktif-tab {
+	opacity: 1;
+	border-bottom-width: 4px;
+	border-color: currentColor;
+	text-shadow: 0 0 20px currentColor;
+}
+
+/* kod bloku gradient border */
+.bg-gray-900.border.border-gray-700 {
+	border-image: linear-gradient(135deg, #374151, #4b5563, #374151) 1;
+	border-radius: 12px;
+	border: 1px solid #374151;
+}
+
+/* ders sonu ekrani confetti efekti */
+@keyframes parlama {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0.7; text-shadow: 0 0 30px #eab308, 0 0 60px #eab308; }
+}
+
+.animate-bounce {
+	animation: parlama 1.5s ease-in-out infinite, bounce 1s infinite;
+}
+
+/* mobil nav iyilestirmesi */
+@media (max-width: 768px) {
+	nav {
+		backdrop-filter: blur(12px);
+		background: rgba(17, 24, 39, 0.95) !important;
+	}
+}
+
+/* selection rengi */
+::selection {
+	background: rgba(59, 130, 246, 0.3);
+	color: white;
+}
